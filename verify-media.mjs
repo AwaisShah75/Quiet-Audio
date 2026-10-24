@@ -1,0 +1,6 @@
+import assert from 'node:assert/strict';
+import {normalizeChannels,adjustPixels,fitDimensions} from './public/media-math.js';
+const left=new Float32Array([0,.1,-.5]),right=new Float32Array([.25,-.1,0]);const {gain}=normalizeChannels([left,right],-3);assert.ok(Math.abs(Math.max(...left.map(Math.abs))-10**(-3/20))<1e-6);assert.ok(Math.abs(right[0]/left[1]-2.5)<1e-6);assert.ok(gain>1);const silent=new Float32Array(20);assert.equal(normalizeChannels([silent]).gain,1);assert.ok(silent.every(v=>v===0));
+assert.deepEqual(fitDimensions(4000,3000,1920),{width:1920,height:1440});assert.deepEqual(fitDimensions(640,480,1920),{width:640,height:480});assert.deepEqual(fitDimensions(1920,1080,720,true),{width:1280,height:720});
+const pixels=new Uint8ClampedArray([100,50,25,128]);adjustPixels(pixels,1,1,1.2,1,0);assert.deepEqual([...pixels],[120,60,30,128]);const flat=new Uint8ClampedArray(Array.from({length:9},()=>[80,80,80,255]).flat());adjustPixels(flat,3,3,1,1,.5);assert.equal(flat[16],80);const edge=new Uint8ClampedArray(Array.from({length:9},(_,i)=>[i===4?100:80,80,80,255]).flat());adjustPixels(edge,3,3,1,1,.5);assert.equal(edge[16],140);
+console.log('PASS: peak targets, stereo balance, silence, pixel adjustments, sharpening and no-upscale dimensions.');
