@@ -27,3 +27,4 @@
 /update-multilingual.mjs
 /upgrade-core.mjs
 /validate-before-processing.mjs
+/dual-hosting.mjs

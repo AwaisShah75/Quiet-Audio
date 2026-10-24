@@ -3,7 +3,8 @@ import {icon,decorate} from './icons.mjs';
 import {mediaTools,mediaPage} from './media-pages.mjs';
 import {searchTitles,guides,relatedTools,structuredData} from './seo.mjs';
 import {mkdir,readFile,writeFile,cp,unlink} from 'node:fs/promises';
-const origin=process.env.SITE_URL?.replace(/\/$/,'');
+const isPreview=(process.env.VERCEL_ENV&&process.env.VERCEL_ENV!=='production')||(process.env.CF_PAGES_BRANCH&&process.env.CF_PAGES_BRANCH!==(process.env.SITE_PRODUCTION_BRANCH||'main'));
+const origin=isPreview?undefined:process.env.SITE_URL?.replace(/\/$/,'');
 if(origin){const parsed=new URL(origin);if(parsed.protocol!=='https:'||parsed.origin!==origin||parsed.username||parsed.password)throw Error('SITE_URL must be an HTTPS origin');}
 const escapeHtml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pages=[];
