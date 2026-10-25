@@ -9,7 +9,7 @@ Static, browser-local media tools for Cloudflare Pages and Vercel. No paid APIs,
 ## Tools
 
 - Audio transcription: multilingual speech-to-text, timestamp editing, TXT/SRT/VTT exports and copy.
-- Video to frames: select any range up to 30 seconds, sample JPG/PNG frames, preview/select stills and download images or a ZIP.
+- Video to frames: select a time range, sample JPEG/PNG frames, preview/select stills and download images or a ZIP.
 - Media converter: one workspace with Audio / Video / Image mode selection. Audio: MP3/WAV/FLAC/M4A/OGG/Opus; video: MP4/WebM/MOV/MKV/GIF; images: PNG/JPG/WebP/BMP. Audio mode can extract a soundtrack from video.
 
 Other standalone tools have been removed from the public site. Old converter URLs redirect to /converter/ with the relevant type selected.
@@ -62,6 +62,18 @@ After either host deploys, check /frames/, /transcribe/, /fonts/dm-sans.woff2 an
 
 Local config checks: node verify-hosting.mjs. Live hosted behavior must still be verified after deployment.
 
-Video-to-frames now accepts inputs up to 250 MB. Frame widths: 1280, 1920 (default), 3840, or original size. The 30-second range, 100-frame cap and 80 MB extracted-output cap remain. Large files can still exceed device memory, especially on phones.
+Video-to-frames now accepts inputs up to 250 MB. Frame widths: 1280, 1920 (default), 3840, or original size. The current cap is 1,000 frames and 80 MB extracted output. Large files can still exceed device memory, especially on phones.
 
 Standalone /extract/ tool: first video audio track to MP3/WAV/FLAC/M4A/OGG/Opus. Input cap 250 MB and 20 minutes, checked by FFprobe before extraction. Processing timeout 10 minutes. These limits are ceilings, not a device-performance guarantee. Full 20-minute browser integration testing is not complete.
+
+## Timestamp-seeking frame extractor
+
+Frames now use browser video decoding and sequential timestamp seeking, not FFmpeg and not video playback. Default 1 fps; presets every 5 seconds / 1 / 2 / 5 fps; custom 0.01–30 fps. A live estimate blocks selections over 1,000 images. JPEG is default at 85% with a 50–100% quality slider; PNG remains available. The 250 MB input and 80 MB output caps remain. The selected range is bounded by the detected video duration rather than the old 30-second cap. Browser codec support and approximate seeking can cause repeated or slightly offset frames; no frame-exact claim is made.
+
+Run node verify-seek-frames.mjs for count boundaries, timestamp control flow, JPEG quality, cancellation and output-budget checks. Decoder behavior in that test is simulated. Browser UI testing verified the live 600-image estimate; actual seeking accuracy, long-GOP behavior and cross-browser extraction remain unverified because browser file selection was previously declined. Before launch, test a known timestamp-burned video and compare requested/decoded frame timestamps in Chrome, Firefox, Safari and Android.
+
+## Transcription workspace upgrade
+
+Balanced (Whisper base) is now default; Lightweight (tiny) and a larger desktop-oriented Whisper small option are available. Small is an accuracy-oriented option, not a measured accuracy guarantee; all modes currently use WASM. Desktop small-model performance and multilingual accuracy remain unbenchmarked. The editor supports search, clickable timestamp playback, active-segment highlighting, copy and TXT/SRT/VTT exports. Cancellation terminates the worker; silent recordings are rejected before inference. An indeterminate progress indicator avoids pretending to know inference completion time.
+
+Run node verify-transcription.mjs for model selection/timestamp/cleanup controls. Real audio/browser integration, cancellation during inference and accuracy benchmarks remain outstanding. No paid API is used. Changes are local until explicitly pushed.
