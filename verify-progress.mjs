@@ -1,0 +1,3 @@
+import assert from 'node:assert/strict';
+import {createProgressTracker} from './public/transcription-progress.js';
+const tracker=createProgressTracker();assert.equal(tracker.value,1);const values=[1,5,10,39.75,22.25,45,50,35,95,100,999].map(n=>tracker.update(n));assert.ok(values.every((n,i)=>i===0||n>=values[i-1]));assert.equal(tracker.value,99);assert.equal(tracker.complete(),100);const fresh=createProgressTracker();fresh.update(NaN);assert.equal(fresh.value,1);assert.equal(fresh.update(-10),1);console.log('PASS: progress starts at 1, never regresses, cannot reach 100 from updates, and completes only on explicit success.');

@@ -1,0 +1,1 @@
+export function createProgressTracker(){let value=1;return {get value(){return value;},update(next){if(Number.isFinite(next))value=Math.max(value,Math.min(99,Math.floor(next)));return value;},complete(){value=100;return value;}};}
