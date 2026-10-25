@@ -64,7 +64,7 @@ Local config checks: node verify-hosting.mjs. Live hosted behavior must still be
 
 Video-to-frames now accepts inputs up to 250 MB. Frame widths: 1280, 1920 (default), 3840, or original size. The current cap is 1,000 frames and 80 MB extracted output. Large files can still exceed device memory, especially on phones.
 
-Standalone /extract/ tool: first video audio track to MP3/WAV/FLAC/M4A/OGG/Opus. Input cap 250 MB and 20 minutes, checked by FFprobe before extraction. Processing timeout 10 minutes. These limits are ceilings, not a device-performance guarantee. Full 20-minute browser integration testing is not complete.
+Standalone /extract/ tool: first video audio track to MP3/WAV/FLAC/M4A/OGG/Opus. Input cap 250 MB and 20 minutes, checked using browser metadata with an FFmpeg input-metadata fallback before extraction. Processing timeout 10 minutes. These limits are ceilings, not a device-performance guarantee. Full 20-minute browser integration testing is not complete.
 
 ## Timestamp-seeking frame extractor
 
@@ -77,3 +77,7 @@ Run node verify-seek-frames.mjs for count boundaries, timestamp control flow, JP
 Balanced (Whisper base) is now default; Lightweight (tiny) and a larger desktop-oriented Whisper small option are available. Small is an accuracy-oriented option, not a measured accuracy guarantee; all modes currently use WASM. Desktop small-model performance and multilingual accuracy remain unbenchmarked. The editor supports search, clickable timestamp playback, active-segment highlighting, copy and TXT/SRT/VTT exports. Cancellation terminates the worker; silent recordings are rejected before inference. An indeterminate progress indicator avoids pretending to know inference completion time.
 
 Run node verify-transcription.mjs for model selection/timestamp/cleanup controls. Real audio/browser integration, cancellation during inference and accuracy benchmarks remain outstanding. No paid API is used. Changes are local until explicitly pushed.
+
+Timestamp validation fix: missing model times remain blank instead of becoming zero or the full recording duration. All transcript text is retained. Start/end seconds can be edited; missing, overlapping, backward, out-of-range or sub-millisecond-invalid timelines block SRT/VTT exports while TXT remains available. Text edits do not realign speech automatically. Tests: node verify-timestamps.mjs.
+
+Extractor duration fix: removed the failing FFprobe dependency. Browser metadata is preferred; unsupported browser containers fall back to parsing FFmpeg input inspection logs. The expected nonzero exit from input-only inspection is not treated as a conversion error. The 20-minute limit remains. Tests: node verify-media-duration.mjs; mocked engine regression tests are not a full browser-file compatibility benchmark.
