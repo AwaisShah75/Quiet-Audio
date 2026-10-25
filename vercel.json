@@ -83,16 +83,6 @@
       "source": "/convert/",
       "destination": "/converter/?type=audio&format=wav",
       "permanent": true
-    },
-    {
-      "source": "/extract",
-      "destination": "/converter/?type=audio&format=wav",
-      "permanent": true
-    },
-    {
-      "source": "/extract/",
-      "destination": "/converter/?type=audio&format=wav",
-      "permanent": true
     }
   ]
 }

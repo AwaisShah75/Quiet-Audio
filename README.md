@@ -63,3 +63,5 @@ After either host deploys, check /frames/, /transcribe/, /fonts/dm-sans.woff2 an
 Local config checks: node verify-hosting.mjs. Live hosted behavior must still be verified after deployment.
 
 Video-to-frames now accepts inputs up to 250 MB. Frame widths: 1280, 1920 (default), 3840, or original size. The 30-second range, 100-frame cap and 80 MB extracted-output cap remain. Large files can still exceed device memory, especially on phones.
+
+Standalone /extract/ tool: first video audio track to MP3/WAV/FLAC/M4A/OGG/Opus. Input cap 250 MB and 20 minutes, checked by FFprobe before extraction. Processing timeout 10 minutes. These limits are ceilings, not a device-performance guarantee. Full 20-minute browser integration testing is not complete.

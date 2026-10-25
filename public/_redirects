@@ -10,5 +10,3 @@
 /image-converter/ /converter/?type=image 301
 /convert /converter/?type=audio&format=wav 301
 /convert/ /converter/?type=audio&format=wav 301
-/extract /converter/?type=audio&format=wav 301
-/extract/ /converter/?type=audio&format=wav 301

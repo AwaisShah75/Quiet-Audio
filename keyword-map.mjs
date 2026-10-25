@@ -10,7 +10,7 @@ export const keywordMap=[
     ],
     "intent": "Find a collection of utilities",
     "title": "Free Online Media Tools — Audio, Images & Video",
-    "description": "Three free browser tools: multilingual audio transcription, video frame extraction and audio, video or image conversion.",
+    "description": "Free browser tools for transcription, video frames, soundtrack extraction and media conversion.",
     "links": [
       "/transcribe/",
       "/converter/",
@@ -140,6 +140,24 @@ export const keywordMap=[
       "/frames/",
       "/transcribe/",
       "/guides/why-wav-files-are-large/"
+    ]
+  },
+  {
+    "path": "/extract/",
+    "type": "tool",
+    "priority": 1,
+    "primary": "extract audio from video",
+    "secondary": [
+      "video to audio",
+      "video to MP3",
+      "extract soundtrack"
+    ],
+    "intent": "Save the first audio track from a video",
+    "title": "Extract Audio from Video — MP3, WAV & More",
+    "description": "Extract a video soundtrack locally and save it as MP3, WAV, FLAC, M4A, OGG or Opus. No signup or file upload required.",
+    "links": [
+      "/converter/",
+      "/frames/"
     ]
   }
 ];
