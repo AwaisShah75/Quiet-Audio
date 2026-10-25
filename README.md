@@ -8,19 +8,15 @@ Static, browser-local media tools for Cloudflare Pages and Vercel. No paid APIs,
 
 ## Tools
 
-- Multilingual transcription: automatic detection / 32 language choices, tiny/base Whisper models, right-to-left editing, timestamped segments, copy text and TXT/SRT/VTT downloads. 10 minutes / 100 MB. Accuracy varies substantially.
-- Audio noise reduction: FFmpeg FFT denoising with gentle/balanced/strong settings, optional low-rumble filter and learning from a noise-only first 0.5 seconds, original/processed playback, WAV output. Targets steady hiss, not every type of interference.
-- Audio converter: MP3, WAV, FLAC, M4A/AAC, OGG/Vorbis, Opus. Can extract the first audio track from supported video.
-- Video converter: MP4/H.264, WebM/VP8, MOV/H.264, MKV/H.264, animated GIF (no audio).
-- Image converter: browser-supported inputs to PNG, JPG, WebP or BMP. Animated images become still frames; JPG/BMP flatten transparency onto white. 20 MB / 24 MP.
-- Video to frames: sample any selected range up to 30 seconds at 0.2, 1, 2 or 5 fps, up to 100 JPG/PNG frames, maximum 1280 px wide; thumbnail previews, individual-image downloads and selected-image ZIP download. At most 80 MB of extracted images.
-- Peak audio normalization, audio trimming, WAV conversion, volume/speed adjustment, reversal, microphone recording and WAV video audio extraction.
+- Audio transcription: multilingual speech-to-text, timestamp editing, TXT/SRT/VTT exports and copy.
+- Video to frames: select any range up to 30 seconds, sample JPG/PNG frames, preview/select stills and download images or a ZIP.
+- Media converter: one workspace with Audio / Video / Image mode selection. Audio: MP3/WAV/FLAC/M4A/OGG/Opus; video: MP4/WebM/MOV/MKV/GIF; images: PNG/JPG/WebP/BMP. Audio mode can extract a soundtrack from video.
 
-The former image enhancer and video adjustment pages were removed. Both platforms redirect their URLs to the respective converters. This site does not offer AI restoration or upscaling.
+Other standalone tools have been removed from the public site. Old converter URLs redirect to /converter/ with the relevant type selected.
 
 ## Processing limits
 
-FFmpeg tools download @ffmpeg/core 0.12.10 (~31 MB) from jsDelivr on first use. The pinned @ffmpeg/ffmpeg 0.12.15 wrapper is vendored locally. Media stays on the device. Software downloads expose ordinary network information to external providers. Audio/noise tool inputs are limited to 50 MB; video/frame inputs to 100 MB. FFmpeg processing times out after 3 minutes. Browser memory and codec compatibility impose additional limits; start with short files. Native FFmpeg and WASM do not have identical capabilities.
+FFmpeg tools download @ffmpeg/core 0.12.10 (~31 MB) from jsDelivr on first use. The pinned @ffmpeg/ffmpeg 0.12.15 wrapper is vendored locally. Media stays on the device. Software downloads expose ordinary network information to external providers. Audio converter inputs are limited to 50 MB; video/frame inputs to 100 MB. FFmpeg processing times out after 3 minutes. Browser memory and codec compatibility impose additional limits; start with short files. Native FFmpeg and WASM do not have identical capabilities.
 
 ## Deployment: Cloudflare Pages and Vercel
 
@@ -56,7 +52,7 @@ See /third-party/ for FFmpeg wrapper/core and Whisper/Transformers.js credits an
 
 ## Keyword mapping
 
-See docs/keyword-map.md for 19 acquisition-page targets, secondary phrases, search intent, editorial priority and overlap rules. keyword-map.mjs is the metadata source used during builds. Priorities are not measured keyword difficulty or search volume. No paid keyword dataset was used.
+See docs/keyword-map.md for 8 acquisition-page targets, secondary phrases, search intent, editorial priority and overlap rules. keyword-map.mjs is the metadata source used during builds. Priorities are not measured keyword difficulty or search volume. No paid keyword dataset was used.
 
 Core upgrade checks: `node verify-core-upgrades.mjs` tests subtitle formatting/timing, Unicode text, invalid time ranges, native frame extraction over a selected range, both noise profile modes and keyword ownership. Browser file tests for these upgrades remain incomplete; native FFmpeg command success does not verify WebAssembly browser execution.
 
@@ -65,3 +61,5 @@ Core upgrade checks: `node verify-core-upgrades.mjs` tests subtitle formatting/t
 After either host deploys, check /frames/, /transcribe/, /fonts/dm-sans.woff2 and /vendor/ffmpeg/worker.js. Check /image/ redirects to /image-converter/ and /video/ to /video-converter/. Unknown routes should return the custom 404 with HTTP 404. Confirm the three response headers are present. This app uses single-threaded FFmpeg and does not require cross-origin isolation headers; COOP/COEP are intentionally not enabled. No SPA catch-all rewrite is used.
 
 Local config checks: node verify-hosting.mjs. Live hosted behavior must still be verified after deployment.
+
+Video-to-frames now accepts inputs up to 250 MB. Frame widths: 1280, 1920 (default), 3840, or original size. The 30-second range, 100-frame cap and 80 MB extracted-output cap remain. Large files can still exceed device memory, especially on phones.

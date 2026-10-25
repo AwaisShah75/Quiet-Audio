@@ -8,16 +8,91 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), geolocation=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), geolocation=()"
+        }
       ]
     }
   ],
   "redirects": [
-    { "source": "/image", "destination": "/image-converter/", "permanent": true },
-    { "source": "/image/", "destination": "/image-converter/", "permanent": true },
-    { "source": "/video", "destination": "/video-converter/", "permanent": true },
-    { "source": "/video/", "destination": "/video-converter/", "permanent": true }
+    {
+      "source": "/image",
+      "destination": "/converter/?type=image",
+      "permanent": true
+    },
+    {
+      "source": "/image/",
+      "destination": "/converter/?type=image",
+      "permanent": true
+    },
+    {
+      "source": "/video",
+      "destination": "/converter/?type=video",
+      "permanent": true
+    },
+    {
+      "source": "/video/",
+      "destination": "/converter/?type=video",
+      "permanent": true
+    },
+    {
+      "source": "/audio-converter",
+      "destination": "/converter/?type=audio",
+      "permanent": true
+    },
+    {
+      "source": "/audio-converter/",
+      "destination": "/converter/?type=audio",
+      "permanent": true
+    },
+    {
+      "source": "/video-converter",
+      "destination": "/converter/?type=video",
+      "permanent": true
+    },
+    {
+      "source": "/video-converter/",
+      "destination": "/converter/?type=video",
+      "permanent": true
+    },
+    {
+      "source": "/image-converter",
+      "destination": "/converter/?type=image",
+      "permanent": true
+    },
+    {
+      "source": "/image-converter/",
+      "destination": "/converter/?type=image",
+      "permanent": true
+    },
+    {
+      "source": "/convert",
+      "destination": "/converter/?type=audio&format=wav",
+      "permanent": true
+    },
+    {
+      "source": "/convert/",
+      "destination": "/converter/?type=audio&format=wav",
+      "permanent": true
+    },
+    {
+      "source": "/extract",
+      "destination": "/converter/?type=audio&format=wav",
+      "permanent": true
+    },
+    {
+      "source": "/extract/",
+      "destination": "/converter/?type=audio&format=wav",
+      "permanent": true
+    }
   ]
 }

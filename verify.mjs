@@ -11,7 +11,7 @@ vm.runInNewContext(source,sandbox);
 elements.get('#file').onchange({target:{files:[{name:'test.wav',size:16044,arrayBuffer:async()=>new ArrayBuffer(0)}]}});
 await elements.get('#process').onclick();assert.equal(saved.size,44+1600*2);const view=new DataView(await saved.arrayBuffer());assert.equal(view.getUint32(24,true),8000);assert.equal(view.getInt16(44,true),16383);assert.equal(elements.get('#download').download,'test-trim.wav');
 elements.get('#end').value='0.05';await elements.get('#process').onclick();assert.match(elements.get('#status').textContent,/Choose valid times/);
-for(const route of ['/','/transcribe/','/extract/','/trim/','/convert/','/record/','/privacy/','/about/','/terms/','/volume/','/speed/','/reverse/']){const res=await fetch('http://127.0.0.1:4173'+route);assert.equal(res.status,200);assert.match(await res.text(),/<title>.+Quiet Audio/);}
+for(const route of ['/','/transcribe/','/frames/','/converter/','/privacy/','/about/','/terms/']){const res=await fetch('http://127.0.0.1:4173'+route);assert.equal(res.status,200);assert.match(await res.text(),/<title>.+Quiet Audio/);}
 console.log('PASS: WAV encoding, trim bounds, invalid-range handling, and nine HTTP pages.');
 
 const transcriptionPage=await (await fetch('http://127.0.0.1:4173/transcribe/')).text();assert.match(transcriptionPage,/Urdu/);assert.match(transcriptionPage,/Hindi/);assert.match(transcriptionPage,/id="language"/);assert.match(transcriptionPage,/dir="auto"/);assert.doesNotMatch(transcriptionPage,/English speech model/);

@@ -1,22 +1,145 @@
-// Priorities are editorial launch choices, not measured keyword difficulty or search volume.
 export const keywordMap=[
-{path:'/',type:'hub',priority:2,primary:'free online media tools',secondary:['free audio video tools','browser media tools'],intent:'Find a collection of utilities',title:'Free Online Media Tools — Audio, Images & Video',description:'Free browser tools for audio transcription, noise reduction, video frame extraction and media conversion. No account required.',links:['/transcribe/','/noise/','/frames/']},
-{path:'/transcribe/',type:'tool',priority:1,primary:'audio to text online',secondary:['free audio transcription','multilingual audio transcription','audio to SRT','audio to VTT'],intent:'Transcribe speech and export text or subtitles',title:'Audio to Text Online — Free Transcript & Subtitle Tool',description:'Transcribe audio locally in multiple languages. Edit timestamped segments and export TXT, SRT or VTT. No account required.',links:['/guides/transcribe-urdu-audio/','/noise/','/trim/']},
-{path:'/noise/',type:'tool',priority:1,primary:'audio noise reduction online',secondary:['reduce background noise in audio','remove hiss from audio','audio noise remover'],intent:'Reduce steady noise in a recording',title:'Audio Noise Reduction Online — Reduce Hiss & Fan Noise',description:'Reduce steady hiss and fan noise locally. Choose reduction strength, compare original and processed audio, and download WAV.',links:['/normalize/','/transcribe/']},
-{path:'/frames/',type:'tool',priority:1,primary:'video to frames',secondary:['extract frames from video','video to JPG frames','video to PNG frames','video frames to ZIP'],intent:'Extract and select video stills',title:'Video to Frames — Extract JPG & PNG Images Online',description:'Choose a video time range and frame rate, preview JPG or PNG stills, and download individual images or selected frames as a ZIP.',links:['/video-converter/','/image-converter/']},
-{path:'/audio-converter/',type:'tool',priority:2,primary:'audio converter online',secondary:['convert audio to MP3','M4A to MP3','FLAC to MP3','audio format converter'],intent:'Convert between supported audio formats',title:'Audio Converter Online — MP3, WAV, FLAC & M4A',description:'Convert supported audio locally to MP3, WAV, FLAC, M4A, OGG or Opus. Choose an output format and download the converted file.',links:['/convert/','/noise/']},
-{path:'/video-converter/',type:'tool',priority:2,primary:'video converter online',secondary:['convert video to MP4','WebM to MP4','MOV to MP4','video to GIF'],intent:'Change video format or create a GIF',title:'Video Converter Online — MP4, WebM, MOV & GIF',description:'Convert supported video to MP4, WebM, MOV, MKV or animated GIF in your browser. Files stay on your device.',links:['/frames/','/extract/']},
-{path:'/image-converter/',type:'tool',priority:2,primary:'image converter online',secondary:['PNG to JPG','JPG to PNG','WebP to PNG','image to BMP'],intent:'Change a still image format',title:'Image Converter Online — PNG, JPG, WebP & BMP',description:'Convert browser-supported images to PNG, JPG, WebP or BMP locally. Animated inputs become a still image. No account required.',links:['/frames/','/video-converter/']},
-{path:'/extract/',type:'tool',priority:2,primary:'video to audio extractor',secondary:['extract audio from video','MP4 to WAV','video soundtrack extractor'],intent:'Save a video soundtrack as WAV',title:'Video to Audio Extractor — Free WAV Download',description:'Extract a browser-supported video soundtrack and download WAV audio locally. No account or file upload required.',links:['/audio-converter/','/guides/extract-audio-from-video/']},
-{path:'/convert/',type:'tool',priority:2,primary:'audio to WAV converter',secondary:['MP3 to WAV','M4A to WAV','convert audio to WAV online'],intent:'Produce uncompressed WAV specifically',title:'Audio to WAV Converter — Convert MP3 & M4A Online',description:'Convert browser-supported audio to uncompressed 16-bit WAV locally. Supported inputs depend on your browser.',links:['/audio-converter/','/guides/why-wav-files-are-large/']},
-{path:'/trim/',type:'tool',priority:2,primary:'audio cutter online',secondary:['trim audio online','cut audio file','audio clip cutter'],intent:'Keep a chosen section of audio',title:'Audio Cutter Online — Trim & Download WAV Clips',description:'Choose start and end times, trim a browser-supported recording, and download the selected clip as WAV. Files stay local.',links:['/audio-converter/','/noise/']},
-{path:'/normalize/',type:'tool',priority:2,primary:'audio normalizer online',secondary:['peak normalize audio','normalize audio volume','WAV normalizer'],intent:'Set the peak level of an entire recording',title:'Audio Normalizer Online — Adjust Peak Volume',description:'Normalize audio peaks to -1, -3 or -6 dBFS while preserving channel balance. Download WAV. No noise removal or LUFS normalization.',links:['/volume/','/noise/']},
-{path:'/volume/',type:'tool',priority:2,primary:'audio volume changer online',secondary:['increase audio volume','lower audio volume','audio volume booster'],intent:'Manually increase or decrease gain',title:'Audio Volume Changer — Increase or Lower Volume',description:'Increase or decrease a recording’s volume and download WAV audio. High boosts may cause distortion; processing stays local.',links:['/normalize/','/trim/']},
-{path:'/speed/',type:'tool',priority:3,primary:'audio speed changer online',secondary:['speed up audio','slow down audio','change audio playback speed'],intent:'Change recording speed with pitch change',title:'Audio Speed Changer — Speed Up or Slow Down',description:'Speed up or slow down audio and download WAV. Pitch changes with speed. No account required.',links:['/trim/','/reverse/']},
-{path:'/reverse/',type:'tool',priority:3,primary:'reverse audio online',secondary:['audio reverser','play audio backwards','reverse sound file'],intent:'Create a reversed audio file',title:'Reverse Audio Online — Free Audio Reverser',description:'Reverse a browser-supported audio recording locally and download the result as WAV. No signup required.',links:['/speed/','/trim/']},
-{path:'/record/',type:'tool',priority:3,primary:'online voice recorder',secondary:['record microphone online','browser audio recorder','record voice and download'],intent:'Record microphone input and save it',title:'Online Voice Recorder — Record & Download Audio',description:'Record your microphone directly in the browser and download the recording. Microphone permission is required; files stay local.',links:['/transcribe/','/noise/']},
-{path:'/guides/',type:'hub',priority:2,primary:'audio tool guides',secondary:['audio conversion help','browser transcription guides'],intent:'Browse help articles',title:'Audio Guides — Transcription, Extraction & WAV Files',description:'Practical guides to private transcription, video audio extraction and WAV file sizes.',links:['/guides/transcribe-urdu-audio/','/guides/extract-audio-from-video/','/guides/why-wav-files-are-large/']},
-{path:'/guides/transcribe-urdu-audio/',type:'guide',priority:1,primary:'how to transcribe Urdu audio',secondary:['Urdu transcription in browser','Urdu transcript accuracy','Urdu speech to text guide'],intent:'Learn the Urdu transcription workflow',title:'How to Transcribe Urdu Audio in Your Browser',description:'Choose Urdu, compare local speech models, and review right-to-left transcripts. Learn the limits of small multilingual models.',links:['/transcribe/','/noise/']},
-{path:'/guides/extract-audio-from-video/',type:'guide',priority:2,primary:'how to extract audio from video',secondary:['extract video audio without uploading','MP4 audio extraction help'],intent:'Learn extraction steps and compatibility limits',title:'How to Extract Audio from Video Without Uploading',description:'Extract browser-supported video audio as WAV, troubleshoot codec errors, and choose what to do with the result.',links:['/extract/','/audio-converter/']},
-{path:'/guides/why-wav-files-are-large/',type:'guide',priority:2,primary:'why are WAV files so large',secondary:['WAV file size calculation','WAV vs MP3 file size','does MP3 to WAV improve quality'],intent:'Understand uncompressed audio size',title:'Why WAV Files Are Larger Than MP3',description:'Understand 16-bit WAV file size with a worked example, and learn when to use compressed audio for smaller downloads.',links:['/convert/','/audio-converter/']}
+  {
+    "path": "/",
+    "type": "hub",
+    "priority": 2,
+    "primary": "free online media tools",
+    "secondary": [
+      "free audio video tools",
+      "browser media tools"
+    ],
+    "intent": "Find a collection of utilities",
+    "title": "Free Online Media Tools — Audio, Images & Video",
+    "description": "Three free browser tools: multilingual audio transcription, video frame extraction and audio, video or image conversion.",
+    "links": [
+      "/transcribe/",
+      "/converter/",
+      "/frames/"
+    ]
+  },
+  {
+    "path": "/transcribe/",
+    "type": "tool",
+    "priority": 1,
+    "primary": "audio to text online",
+    "secondary": [
+      "free audio transcription",
+      "multilingual audio transcription",
+      "audio to SRT",
+      "audio to VTT"
+    ],
+    "intent": "Transcribe speech and export text or subtitles",
+    "title": "Audio to Text Online — Free Transcript & Subtitle Tool",
+    "description": "Transcribe audio locally in multiple languages. Edit timestamped segments and export TXT, SRT or VTT. No account required.",
+    "links": [
+      "/guides/transcribe-urdu-audio/",
+      "/converter/"
+    ]
+  },
+  {
+    "path": "/frames/",
+    "type": "tool",
+    "priority": 1,
+    "primary": "video to frames",
+    "secondary": [
+      "extract frames from video",
+      "video to JPG frames",
+      "video to PNG frames",
+      "video frames to ZIP"
+    ],
+    "intent": "Extract and select video stills",
+    "title": "Video to Frames — Extract JPG & PNG Images Online",
+    "description": "Choose a video time range and frame rate, preview JPG or PNG stills, and download individual images or selected frames as a ZIP.",
+    "links": [
+      "/converter/"
+    ]
+  },
+  {
+    "path": "/guides/",
+    "type": "hub",
+    "priority": 2,
+    "primary": "audio tool guides",
+    "secondary": [
+      "audio conversion help",
+      "browser transcription guides"
+    ],
+    "intent": "Browse help articles",
+    "title": "Audio Guides — Transcription, Extraction & WAV Files",
+    "description": "Practical guides to private transcription, video audio extraction and WAV file sizes.",
+    "links": [
+      "/guides/transcribe-urdu-audio/",
+      "/guides/extract-audio-from-video/",
+      "/guides/why-wav-files-are-large/"
+    ]
+  },
+  {
+    "path": "/guides/transcribe-urdu-audio/",
+    "type": "guide",
+    "priority": 1,
+    "primary": "how to transcribe Urdu audio",
+    "secondary": [
+      "Urdu transcription in browser",
+      "Urdu transcript accuracy",
+      "Urdu speech to text guide"
+    ],
+    "intent": "Learn the Urdu transcription workflow",
+    "title": "How to Transcribe Urdu Audio in Your Browser",
+    "description": "Choose Urdu, compare local speech models, and review right-to-left transcripts. Learn the limits of small multilingual models.",
+    "links": [
+      "/transcribe/",
+      "/converter/"
+    ]
+  },
+  {
+    "path": "/guides/extract-audio-from-video/",
+    "type": "guide",
+    "priority": 2,
+    "primary": "how to extract audio from video",
+    "secondary": [
+      "extract video audio without uploading",
+      "MP4 audio extraction help"
+    ],
+    "intent": "Learn extraction steps and compatibility limits",
+    "title": "How to Extract Audio from Video Without Uploading",
+    "description": "Extract browser-supported video audio as WAV, troubleshoot codec errors, and choose what to do with the result.",
+    "links": [
+      "/converter/"
+    ]
+  },
+  {
+    "path": "/guides/why-wav-files-are-large/",
+    "type": "guide",
+    "priority": 2,
+    "primary": "why are WAV files so large",
+    "secondary": [
+      "WAV file size calculation",
+      "WAV vs MP3 file size",
+      "does MP3 to WAV improve quality"
+    ],
+    "intent": "Understand uncompressed audio size",
+    "title": "Why WAV Files Are Larger Than MP3",
+    "description": "Understand 16-bit WAV file size with a worked example, and learn when to use compressed audio for smaller downloads.",
+    "links": [
+      "/converter/"
+    ]
+  },
+  {
+    "path": "/converter/",
+    "type": "tool",
+    "priority": 1,
+    "primary": "media converter online",
+    "secondary": [
+      "audio converter online",
+      "video converter online",
+      "image converter online"
+    ],
+    "intent": "Choose a media type and convert its format",
+    "title": "Media Converter — Audio, Video & Images Online",
+    "description": "Convert audio, video and images locally. Choose MP3, WAV, FLAC, MP4, WebM, MOV, PNG, JPG, WebP and more in one converter.",
+    "links": [
+      "/frames/",
+      "/transcribe/",
+      "/guides/why-wav-files-are-large/"
+    ]
+  }
 ];

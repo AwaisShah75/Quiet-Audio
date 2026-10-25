@@ -28,3 +28,6 @@
 /upgrade-core.mjs
 /validate-before-processing.mjs
 /dual-hosting.mjs
+/reduce-tools.mjs
+/document-three-tools.mjs
+/finish-three-tools.mjs

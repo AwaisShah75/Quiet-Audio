@@ -1,4 +1,4 @@
-const paths={
+const paths={converter:'<path d="M4 7h14m-3-3 3 3-3 3M20 17H6m3-3-3 3 3 3"/>',
 frames:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
 noise:'<path d="M3 10v4m4-8v12m5-15v18m5-15v12m4-8v4"/><path d="m3 3 18 18"/>',
 'audio-converter':'<path d="M4 7h14m-3-3 3 3-3 3M20 17H6m3-3-3 3 3 3"/><path d="M3 11v2m18-2v2"/>',
